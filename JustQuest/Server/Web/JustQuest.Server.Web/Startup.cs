@@ -8,12 +8,18 @@ using Owin;
 
 namespace JustQuest.Server.Web
 {
+    using System.Reflection;
+    using App_Start;
     using Microsoft.Owin.Cors;
 
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            DatabaseConfig.Initialize();
+
+            AutoMapperConfig.RegisterMappings();
+
             app.UseCors(CorsOptions.AllowAll);
 
             ConfigureAuth(app);
