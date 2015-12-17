@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:JustQuest.UI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:c="using:JustQuest.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
@@ -17,81 +18,26 @@
             <ImageBrush ImageSource="../Assets/bg1.png" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        <c:PageHeader x:Name="pageHeader">
+            <c:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Dwarf Quest MENU"/>
+            </c:PageHeader.HeaderContent>
+        </c:PageHeader>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Back button and page title -->
-        <Grid x:Name="Header">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Visibility="Collapsed"/>
-            <Grid x:Name="LogoGrid" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="234" Grid.Column="1" Margin="60,0,0,0">
+            <Grid x:Name="LogoGrid" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Grid.Row="0">
                 <Image Source="../Assets/MainLogo.png"/>
             </Grid>
-        </Grid>
-        <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ViewChanged="scrollViewer_ViewChanged" Grid.Row="1">
-            <Grid x:Name="MainGrid" Margin="0,20,0,20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
-                <GridViewItem Grid.Row="0" Grid.Column="0">
-                    <Grid x:Name="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="Register_Tapped">
-                        <Image Source="../Assets/HubPage/HupPic1.png"  Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Register" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="White"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="0" Grid.Column="1">
-                    <Grid x:Name="Icon1"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="../Assets/HubPage/HupPic2.png"  Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="0" Grid.Column="2">
-                    <Grid x:Name="Icon2"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="../Assets/HubPage/HupPic3.png" Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="1" Grid.Column="0">
-                    <Grid x:Name="Icon3">
-                        <Image Source="../Assets/HubPage/HupPic3.png" Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="1" Grid.Column="1">
-                    <Grid x:Name="Icon4">
-                        <Image Source="../Assets/HubPage/HupPic3.png" Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="1" Grid.Column="2">
-                    <Grid x:Name="Icon5">
-                        <Image Source="../Assets/HubPage/HupPic3.png" Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                <GridViewItem Grid.Row="2" Grid.Column="0">
-                    <Grid x:Name="Icon6">
-                        <Image Source="../Assets/HubPage/HupPic3.png" Width="90" Stretch="UniformToFill"/>
-                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Login" VerticalAlignment="Bottom" FontFamily="Segoe UI" FontWeight="Light" FontSize="21" Margin="0,0,0,10" Foreground="#FF272727"/>
-                    </Grid>
-                </GridViewItem>
-                
+            <Grid x:Name="MainGrid" Grid.Row="2">
+                <TextBlock Text="Active Quests"></TextBlock>
             </Grid>
-        </ScrollViewer>
-        <Grid x:Name="grid" HorizontalAlignment="Left" Height="100" Opacity="0" VerticalAlignment="Top" Width="100">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Opacity="0" TextWrapping="Wrap" Text="Please switch to full screen to view the details." VerticalAlignment="Top"/>
         </Grid>
     </Grid>
 </Page>

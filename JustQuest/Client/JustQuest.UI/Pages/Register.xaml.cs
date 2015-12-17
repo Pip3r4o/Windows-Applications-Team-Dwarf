@@ -144,6 +144,8 @@ namespace JustQuest.UI
                                 Token = match
                             });
 
+                            List<UserCredentials> users = await connection
+                                .QueryAsync<UserCredentials>("SELECT * FROM UserCredentials");
 
                             this.Frame.Navigate(typeof(MainPage));
                         }
