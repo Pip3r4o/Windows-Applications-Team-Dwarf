@@ -181,6 +181,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JustQuest.UI.Data\JustQuest.UI.Data.csproj">
+      <Project>{c71bc391-c8c0-43ad-b3fa-6e1b64cf2437}</Project>
+      <Name>JustQuest.UI.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

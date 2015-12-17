@@ -72,9 +72,8 @@
                 <Button Content="Register User"
                                     Grid.Row="1"
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" 
-                                    CommandParameter="{StaticResource user}"
-                                    Command="{Binding ContentViewModel.Register}"/>
+                                    VerticalAlignment="Stretch"
+                       Click="Button_Click"/>
 
                </Grid>
             </ScrollViewer>
