@@ -28,7 +28,6 @@
         public IHttpActionResult Get()
         {
             var currentUserId = User.Identity.GetUserId();
-
             var result = this.data.Quests.All()
                 .Where(x => x.NumberOfRemainingCorrectGuesses > 0 && x.UserId != currentUserId)
                 .ProjectTo<QuestResponseModel>()
@@ -64,6 +63,11 @@
 
             var currentUserId = User.Identity.GetUserId();
             var user = this.data.Users.All().FirstOrDefault(x => x.Id == currentUserId);
+
+            if (user.Rupees >= 2)
+            {
+                user.Rupees -= 2;
+            }
 
             if (quest.UserId == currentUserId)
             {
