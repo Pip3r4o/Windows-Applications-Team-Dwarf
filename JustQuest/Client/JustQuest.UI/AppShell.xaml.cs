@@ -20,6 +20,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace JustQuest.UI
 {
+    using Pages;
+
     /// <summary>
     /// The "chrome" layer of the app that provides top-level navigation with
     /// proper keyboarding navigation.
@@ -33,7 +35,7 @@ namespace JustQuest.UI
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Contact,
-                    Label = "Home Page",
+                    Label = "Home",
                     DestPage = typeof(MainPage)
                 },
                 new NavMenuItem()
@@ -41,6 +43,12 @@ namespace JustQuest.UI
                     Symbol = Symbol.Edit,
                     Label = "Register",
                     DestPage = typeof(Register)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Account,
+                    Label = "Login",
+                    DestPage = typeof(Login)
                 },
             });
 

@@ -111,10 +111,14 @@
     <Compile Include="DataModels\User.cs" />
     <Compile Include="DataModels\UserViewModel.cs" />
     <Compile Include="DataModels\ViewModelBase.cs" />
+    <Compile Include="Helpers\BadRequestHandler.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\DialogResult.cs" />
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="NavMenuItem.cs" />
+    <Compile Include="Pages\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -127,7 +131,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="JustQuest.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\bg.png" />
@@ -187,6 +190,10 @@
     <Page Include="Controls\PageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

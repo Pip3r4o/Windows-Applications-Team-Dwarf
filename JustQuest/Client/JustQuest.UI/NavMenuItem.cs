@@ -9,7 +9,9 @@ namespace JustQuest.UI
     public class NavMenuItem
     {
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
+
         public char SymbolAsChar
         {
             get
@@ -19,6 +21,7 @@ namespace JustQuest.UI
         }
 
         public Type DestPage { get; set; }
+
         public object Arguments { get; set; }
     }
 }

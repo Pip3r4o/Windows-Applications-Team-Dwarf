@@ -5,6 +5,7 @@
     using SQLite.Net.Platform.WinRT;
     using System;
     using System.IO;
+    using System.Threading.Tasks;
     using Windows.Storage;
 
     public static class SQLiteData
@@ -30,6 +31,37 @@
         {
             var connection = GetDbConnectionAsync();
             await connection.CreateTableAsync<UserCredentials>();
+        }
+
+        public static async void AddUserCredentials(UserCredentials user)
+        {
+            RemoveUserCredentials();
+
+            var connection = GetDbConnectionAsync();
+
+            await connection.InsertAsync(user);
+        }
+
+        public static async void RemoveUserCredentials()
+        {
+            var connection = GetDbConnectionAsync();
+
+            var result = await GetUserCredentials();
+
+            if (result != null)
+            {
+                await connection.DeleteAllAsync<UserCredentials>();
+            }
+        }
+
+        public static async Task<UserCredentials> GetUserCredentials()
+        {
+            var conn = GetDbConnectionAsync();
+
+            AsyncTableQuery<UserCredentials> query = conn.Table<UserCredentials>();
+            var result = await query.FirstOrDefaultAsync(); //ToListAsync();
+
+            return result;
         }
     }
 }

@@ -46,21 +46,17 @@ namespace JustQuest.UI
         {
             //UserName Validation   
 
-            if (Username.Text.Length < 6)
-
+            if (Username.Text.Length < 5)
             {
 
-                var dialog = new MessageDialog("Username length should be minimum of 6 characters!");
+                var dialog = new MessageDialog("Username length should be minimum of 5 characters!");
                 await dialog.ShowAsync();
 
             }
-
-
-
+            
             //Password length Validation   
 
             else if (Password.Password.Length < 6)
-
             {
 
                 var dialog = new MessageDialog("Password length should be minimum of 6 characters!");
@@ -70,18 +66,16 @@ namespace JustQuest.UI
             //Confirm Password length Validation   
 
             else if (ConfirmPassword.Password != Password.Password)
-
             {
 
                 var dialog = new MessageDialog("Confirm password should equal the password");
                 await dialog.ShowAsync();
             }
+
             //EmailID validation   
 
             else if (!Regex.IsMatch(Email.Text.Trim(), @"^([a-zA-Z_])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])$"))
-
             {
-
                 var dialog = new MessageDialog("Invalid Email");
                 await dialog.ShowAsync();
 
@@ -89,6 +83,8 @@ namespace JustQuest.UI
             else
             {
                 bool isSuccessfulRequest = false;
+                string registerResponse = string.Empty;
+
                 using (var client = new HttpClient())
                 {
                     var formContent = new Dictionary<string, string>
@@ -104,6 +100,10 @@ namespace JustQuest.UI
 
                     isSuccessfulRequest = response.IsSuccessStatusCode;
 
+                    if (!isSuccessfulRequest)
+                    {
+                        registerResponse = await response.Content.ReadAsStringAsync();
+                    }
                 }
                 if (isSuccessfulRequest)
                 {
@@ -122,12 +122,9 @@ namespace JustQuest.UI
                         var response = await client.PostAsync("http://localhost:17888/api/account/login", content);
 
                         var responseText = await response.Content.ReadAsStringAsync();
-
-                        var tokenIndex = responseText.IndexOf("access_token\":");
-
+                        
                         var regex = new Regex("[a-zA-z0-9-_]+");
-
-
+                        
                         isSuccessfulRequest = response.IsSuccessStatusCode;
 
                         if (isSuccessfulRequest)
@@ -136,26 +133,28 @@ namespace JustQuest.UI
 
                             SQLiteData.InitAsync();
 
-                            var connection = SQLiteData.GetDbConnectionAsync();
-
-                            await connection.InsertAsync(new UserCredentials()
+                            SQLiteData.AddUserCredentials(new UserCredentials()
                             {
                                 Name = Username.Text,
                                 Token = match
                             });
 
-                            List<UserCredentials> users = await connection
-                                .QueryAsync<UserCredentials>("SELECT * FROM UserCredentials");
+                            //List<UserCredentials> users = await connection
+                            //    .QueryAsync<UserCredentials>("SELECT * FROM UserCredentials");
 
-                            this.Frame.Navigate(typeof(MainPage));
+                            this.Frame.Navigate(typeof (MainPage));
                         }
                     }
                 }
                 else
                 {
+                    var messages = BadRequestHandler.GetModelState(registerResponse);
 
-                    var dialog = new MessageDialog("Something went wrong", "Please try again");
-                    await dialog.ShowAsync();
+                    foreach (var message in messages)
+                    {
+                        var dialog = new MessageDialog(message, "Something went wrong");
+                        await dialog.ShowAsync();
+                    }
                 }
             }
         }
