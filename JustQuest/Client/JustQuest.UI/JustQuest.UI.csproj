@@ -116,6 +116,9 @@
     <Compile Include="Helpers\DialogResult.cs" />
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="NavMenuItem.cs" />
+    <Compile Include="Pages\AddQuest.xaml.cs">
+      <DependentUpon>AddQuest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddQuest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

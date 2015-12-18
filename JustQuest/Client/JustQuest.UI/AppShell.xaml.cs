@@ -50,6 +50,12 @@ namespace JustQuest.UI
                     Label = "Login",
                     DestPage = typeof(Login)
                 },
+                 new NavMenuItem()
+                {
+                    Symbol = Symbol.Add,
+                    Label = "Add Quest",
+                    DestPage = typeof(AddQuest)
+                },
             });
 
         public static AppShell Current = null;
