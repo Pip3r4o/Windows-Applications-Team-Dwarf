@@ -22,29 +22,47 @@ using Windows.UI.Xaml.Navigation;
 
 namespace JustQuest.UI.Pages
 {
+    using Windows.System;
+    using Helpers;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AddQuest : Page
     {
+        private readonly HttpRequester httpClient;
+
         public AddQuest()
         {
             this.InitializeComponent();
+
+            SQLiteData.InitAsync();
+
+            httpClient = new HttpRequester();
+
             myMap.Loaded += MyMap_Loaded;
             myMap.MapTapped += MyMap_MapTapped;
         }
 
         private async void MyMap_Loaded(object sender, RoutedEventArgs e)
         {
-            Geolocator geolocator = new Geolocator();
-            Geoposition pos = await geolocator.GetGeopositionAsync();
-            Geopoint myLocation = pos.Coordinate.Point;
+            var accessStatus = await Geolocator.RequestAccessAsync();
 
-            // Set the map location.
-            myMap.Center = myLocation;
-            myMap.ZoomLevel = 12;
-            myMap.LandmarksVisible = true;
+            if (accessStatus == GeolocationAccessStatus.Allowed)
+            {
+                Geolocator geolocator = new Geolocator();
+                Geoposition pos = await geolocator.GetGeopositionAsync();
+                Geopoint myLocation = pos.Coordinate.Point;
 
+                // Set the map location.
+                myMap.Center = myLocation;
+                myMap.ZoomLevel = 12;
+                myMap.LandmarksVisible = true;
+            }
+            else
+            {
+                await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-location"));
+            }
         }
 
         private void MyMap_MapTapped(MapControl sender, MapInputEventArgs args)
@@ -68,8 +86,8 @@ namespace JustQuest.UI.Pages
             StatusBlock.Text = strMessage;
 
             // Collapse the StatusBlock if it has no text to conserve real estate.
-            StatusBorder.Visibility = (StatusBlock.Text != String.Empty) ? Visibility.Visible : Visibility.Collapsed;
-            if (StatusBlock.Text != String.Empty)
+            StatusBorder.Visibility = (StatusBlock.Text != string.Empty) ? Visibility.Visible : Visibility.Collapsed;
+            if (StatusBlock.Text != string.Empty)
             {
                 StatusBorder.Visibility = Visibility.Visible;
                 StatusPanel.Visibility = Visibility.Visible;
@@ -88,30 +106,14 @@ namespace JustQuest.UI.Pages
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            SQLiteData.InitAsync();
-            var userCredentials = SQLiteData.GetUserCredentials();
-            using (var client = new HttpClient())
-            {
-                var token = "";
+            var userCredentials = await SQLiteData.GetUserCredentials();
 
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var formContent = new Dictionary<string, string>
-                            {
-                                {"Name", Name.Text },
-                                {"Task", Task.Text },
-                                {"PossibleAnswers", PossibleAnswers.Text }
-                            };
-                var content = new FormUrlEncodedContent(formContent);
+            var token = userCredentials.Token ?? "";
 
-                var response = await client.PostAsync("http://localhost:17888/api/Quests", content);
+            // TODO:
+            object quest = null;
 
-                var isSuccessfulRequest = response.IsSuccessStatusCode;
-
-                if (!isSuccessfulRequest)
-                {
-                    //registerResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            var response = await httpClient.PostData(quest, "api/quests", token);
         }
     }
 }

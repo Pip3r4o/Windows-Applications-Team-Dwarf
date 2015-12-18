@@ -15,7 +15,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="300"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" 
                              PlaceholderText="Name" 

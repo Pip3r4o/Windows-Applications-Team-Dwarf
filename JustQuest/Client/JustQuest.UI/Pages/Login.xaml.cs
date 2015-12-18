@@ -11,15 +11,20 @@ namespace JustQuest.UI.Pages
     using System.Text.RegularExpressions;
     using Windows.UI.Popups;
     using Data;
+    using Helpers;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Login : Page
     {
+        private readonly HttpRequester httpClient;
+
         public Login()
         {
             this.InitializeComponent();
+            this.httpClient = new HttpRequester();
+            SQLiteData.InitAsync();
         }
 
         private void scrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
@@ -31,44 +36,30 @@ namespace JustQuest.UI.Pages
         {
             bool isSuccessfulRequest;
 
-            using (var client = new HttpClient())
+            var response = await httpClient.Login(Username.Text, Password.Password);
+
+            var responseText = await response.Content.ReadAsStringAsync();
+
+            var regex = new Regex("[a-zA-z0-9-_]+");
+
+            isSuccessfulRequest = response.IsSuccessStatusCode;
+
+            if (isSuccessfulRequest)
             {
-                var formContent = new Dictionary<string, string>
-                            {
-                                {"Username", Username.Text },
-                                {"Password", Password.Password },
-                                {"grant_type", "password" }
-                            };
+                var match = regex.Matches(responseText)[1].Value.TrimStart('{').TrimEnd('}');
 
-                var content = new FormUrlEncodedContent(formContent);
-
-                var response = await client.PostAsync("http://localhost:17888/api/account/login", content);
-
-                var responseText = await response.Content.ReadAsStringAsync();
-
-                var regex = new Regex("[a-zA-z0-9-_]+");
-                
-                isSuccessfulRequest = response.IsSuccessStatusCode;
-
-                if (isSuccessfulRequest)
+                SQLiteData.AddUserCredentials(new UserCredentials()
                 {
-                    var match = regex.Matches(responseText)[1].Value.TrimStart('{').TrimEnd('}');
+                    Name = Username.Text,
+                    Token = match
+                });
 
-                    SQLiteData.InitAsync();
-
-                    SQLiteData.AddUserCredentials(new UserCredentials()
-                    {
-                        Name = Username.Text,
-                        Token = match
-                    });
-
-                    this.Frame.Navigate(typeof (MainPage));
-                }
-                else
-                {
-                    var dialog = new MessageDialog("Something went wrong", "Please try again");
-                    await dialog.ShowAsync();
-                }
+                this.Frame.Navigate(typeof(MainPage));
+            }
+            else
+            {
+                var dialog = new MessageDialog("Something went wrong", "Please try again");
+                await dialog.ShowAsync();
             }
         }
     }

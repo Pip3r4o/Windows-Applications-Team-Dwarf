@@ -36,17 +36,15 @@
 
         public static async void AddUserCredentials(UserCredentials user)
         {
-            RemoveUserCredentials();
-
             var connection = GetDbConnectionAsync();
+
+            RemoveUserCredentials(connection);
 
             await connection.InsertAsync(user);
         }
 
-        public static async void RemoveUserCredentials()
+        public static async void RemoveUserCredentials(SQLiteAsyncConnection connection)
         {
-            var connection = GetDbConnectionAsync();
-
             var result = await GetUserCredentials();
 
             if (result != null)
@@ -57,9 +55,9 @@
 
         public static async Task<UserCredentials> GetUserCredentials()
         {
-            var conn = GetDbConnectionAsync();
+            var connection = GetDbConnectionAsync();
 
-            AsyncTableQuery<UserCredentials> query = conn.Table<UserCredentials>();
+            AsyncTableQuery<UserCredentials> query = connection.Table<UserCredentials>();
             var result = await query.FirstOrDefaultAsync(); //ToListAsync();
 
             return result;

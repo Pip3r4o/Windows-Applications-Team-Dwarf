@@ -31,11 +31,14 @@ namespace JustQuest.UI
     /// </summary>
     public sealed partial class Register : Page
     {
+        private readonly HttpRequester httpClient;
         public Register()
         {
             this.InitializeComponent();
             var contentViewModel = new UserViewModel();
             this.DataContext = new RegisterViewModel(contentViewModel);
+
+            this.httpClient = new HttpRequester();
         }
         private void scrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
@@ -53,7 +56,7 @@ namespace JustQuest.UI
                 await dialog.ShowAsync();
 
             }
-            
+
             //Password length Validation   
 
             else if (Password.Password.Length < 6)
@@ -85,76 +88,49 @@ namespace JustQuest.UI
                 bool isSuccessfulRequest = false;
                 string registerResponse = string.Empty;
 
-                using (var client = new HttpClient())
-                {
-                    var formContent = new Dictionary<string, string>
-                            {
-                                {"Username", Username.Text },
-                                {"Email", Email.Text },
-                                {"Password", Password.Password },
-                                {"ConfirmPassword", ConfirmPassword.Password }
-                            };
-                    var content = new FormUrlEncodedContent(formContent);
+                var response = await httpClient.Register(Username.Text, Email.Text, Password.Password,
+                    ConfirmPassword.Password);
 
-                    var response = await client.PostAsync("http://localhost:17888/api/account/register", content);
+                isSuccessfulRequest = response.IsSuccessStatusCode;
 
-                    isSuccessfulRequest = response.IsSuccessStatusCode;
-
-                    if (!isSuccessfulRequest)
-                    {
-                        registerResponse = await response.Content.ReadAsStringAsync();
-                    }
-                }
                 if (isSuccessfulRequest)
                 {
                     isSuccessfulRequest = false;
 
-                    using (var client = new HttpClient())
+                    response = await httpClient.Login(Username.Text, Password.Password);
+
+                    var responseText = await response.Content.ReadAsStringAsync();
+
+                    var regex = new Regex("[a-zA-z0-9-_]+");
+
+                    isSuccessfulRequest = response.IsSuccessStatusCode;
+
+                    if (isSuccessfulRequest)
                     {
-                        var formContent = new Dictionary<string, string>
-                            {
-                                {"Username", Username.Text },
-                                {"Password", Password.Password },
-                                {"grant_type", "password" }
-                            };
-                        var content = new FormUrlEncodedContent(formContent);
+                        var match = regex.Matches(responseText)[1].Value.TrimStart('{').TrimEnd('}');
 
-                        var response = await client.PostAsync("http://localhost:17888/api/account/login", content);
-
-                        var responseText = await response.Content.ReadAsStringAsync();
-                        
-                        var regex = new Regex("[a-zA-z0-9-_]+");
-                        
-                        isSuccessfulRequest = response.IsSuccessStatusCode;
-
-                        if (isSuccessfulRequest)
+                        SQLiteData.AddUserCredentials(new UserCredentials()
                         {
-                            var match = regex.Matches(responseText)[1].Value.TrimStart('{').TrimEnd('}');
+                            Name = Username.Text,
+                            Token = match
+                        });
 
-                            SQLiteData.InitAsync();
-
-                            SQLiteData.AddUserCredentials(new UserCredentials()
-                            {
-                                Name = Username.Text,
-                                Token = match
-                            });
-
-                            //List<UserCredentials> users = await connection
-                            //    .QueryAsync<UserCredentials>("SELECT * FROM UserCredentials");
-
-                            this.Frame.Navigate(typeof (MainPage));
-                        }
+                        this.Frame.Navigate(typeof(MainPage));
+                    }
+                    else
+                    {
+                        var dialog = new MessageDialog("Something went wrong", "Please try again");
+                        await dialog.ShowAsync();
                     }
                 }
                 else
                 {
+                    registerResponse = await response.Content.ReadAsStringAsync();
+
                     var messages = BadRequestHandler.GetModelState(registerResponse);
 
-                    foreach (var message in messages)
-                    {
-                        var dialog = new MessageDialog(message, "Something went wrong");
-                        await dialog.ShowAsync();
-                    }
+                    var dialog = new MessageDialog(messages[0], "Something went wrong");
+                    await dialog.ShowAsync();
                 }
             }
         }

@@ -114,6 +114,7 @@
     <Compile Include="Helpers\BadRequestHandler.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\DialogResult.cs" />
+    <Compile Include="Helpers\HttpRequester.cs" />
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Pages\AddQuest.xaml.cs">
