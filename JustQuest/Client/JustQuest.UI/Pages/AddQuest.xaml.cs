@@ -24,96 +24,27 @@ namespace JustQuest.UI.Pages
 {
     using Windows.System;
     using Helpers;
-
+    using DataModels;
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AddQuest : Page
     {
-        private readonly HttpRequester httpClient;
+        
 
         public AddQuest()
         {
             this.InitializeComponent();
 
-            SQLiteData.InitAsync();
+            var contentViewModel = new QuestViewModel();
+            this.DataContext = new AddQuestViewModel(contentViewModel);
 
-            httpClient = new HttpRequester();
 
-            myMap.Loaded += MyMap_Loaded;
-            myMap.MapTapped += MyMap_MapTapped;
         }
 
-        private async void MyMap_Loaded(object sender, RoutedEventArgs e)
+        private void Add_Hint(object sender, RoutedEventArgs e)
         {
-            var accessStatus = await Geolocator.RequestAccessAsync();
-
-            if (accessStatus == GeolocationAccessStatus.Allowed)
-            {
-                Geolocator geolocator = new Geolocator();
-                Geoposition pos = await geolocator.GetGeopositionAsync();
-                Geopoint myLocation = pos.Coordinate.Point;
-
-                // Set the map location.
-                myMap.Center = myLocation;
-                myMap.ZoomLevel = 12;
-                myMap.LandmarksVisible = true;
-            }
-            else
-            {
-                await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-location"));
-            }
-        }
-
-        private void MyMap_MapTapped(MapControl sender, MapInputEventArgs args)
-        {
-            var tappedGeoPosition = args.Location.Position;
-            string status = "MapTapped at \nLatitude:" + tappedGeoPosition.Latitude + "\nLongitude: " + tappedGeoPosition.Longitude;
-            NotifyUser(status, NotifyType.StatusMessage);
-        }
-
-        public void NotifyUser(string strMessage, NotifyType type)
-        {
-            switch (type)
-            {
-                case NotifyType.StatusMessage:
-                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-                    break;
-                case NotifyType.ErrorMessage:
-                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    break;
-            }
-            StatusBlock.Text = strMessage;
-
-            // Collapse the StatusBlock if it has no text to conserve real estate.
-            StatusBorder.Visibility = (StatusBlock.Text != string.Empty) ? Visibility.Visible : Visibility.Collapsed;
-            if (StatusBlock.Text != string.Empty)
-            {
-                StatusBorder.Visibility = Visibility.Visible;
-                StatusPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                StatusBorder.Visibility = Visibility.Collapsed;
-                StatusPanel.Visibility = Visibility.Collapsed;
-            }
-        }
-        public enum NotifyType
-        {
-            StatusMessage,
-            ErrorMessage
-        };
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var userCredentials = await SQLiteData.GetUserCredentials();
-
-            var token = userCredentials.Token ?? "";
-
-            // TODO:
-            object quest = null;
-
-            var response = await httpClient.PostData(quest, "api/quests", token);
+            this.Frame.Navigate(typeof(AddHint));
         }
     }
 }

@@ -105,8 +105,14 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\HintDataModels\AddHintViewModel.cs" />
+    <Compile Include="DataModels\QuestDataModels\AddQuestViewModel.cs" />
+    <Compile Include="DataModels\HintDataModels\Hint.cs" />
+    <Compile Include="DataModels\HintDataModels\HintViewModel.cs" />
     <Compile Include="DataModels\IContentViewModel.cs" />
     <Compile Include="DataModels\IPageViewModel.cs" />
+    <Compile Include="DataModels\QuestDataModels\Quest.cs" />
+    <Compile Include="DataModels\QuestDataModels\QuestViewModel.cs" />
     <Compile Include="DataModels\RegisterViewModel.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="DataModels\UserViewModel.cs" />
@@ -117,6 +123,9 @@
     <Compile Include="Helpers\HttpRequester.cs" />
     <Compile Include="Helpers\MessageBox.cs" />
     <Compile Include="NavMenuItem.cs" />
+    <Compile Include="Pages\AddHint.xaml.cs">
+      <DependentUpon>AddHint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddQuest.xaml.cs">
       <DependentUpon>AddQuest.xaml</DependentUpon>
     </Compile>
@@ -192,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddHint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

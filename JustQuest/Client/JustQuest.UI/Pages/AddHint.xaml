@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="JustQuest.UI.Pages.AddHint"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JustQuest.UI.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:viewModels="using:JustQuest.UI.DataModels">
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="20,20,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <viewModels:Hint x:Key="hint"/>
+        </Grid.Resources>
+        <Grid Grid.Row="0"
+              DataContext="{StaticResource hint}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height= "2*"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0"
+                 PlaceholderText="Description Hint"
+                 Name="Description"
+                 Text="{Binding Description, Mode=TwoWay}">
+            </TextBox>
+            <maps:MapControl Grid.Row="1"
+                         x:Name="myMap"            
+                         ZoomInteractionMode="GestureAndControl"
+                         TiltInteractionMode="GestureAndControl" />
+            <StackPanel x:Name="StatusPanel" 
+                        Grid.Row="2"
+                        Orientation="Vertical" 
+                        RelativePanel.AlignBottomWithPanel="True" 
+                        RelativePanel.AlignRightWithPanel="True" 
+                        RelativePanel.AlignLeftWithPanel="True">
+                <TextBlock x:Name="StatusLabel" 
+                           Margin="10,0,0,10" 
+                           TextWrapping="Wrap" 
+                           Text="Status:" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Name="LatitudeBox" 
+                               Grid.Row="0" 
+                               Text="{Binding Latitude, Mode=TwoWay}">
+                    </TextBox>
+                    <TextBox Name="LongitudeBox" 
+                               Grid.Row="1"
+                               Text="{Binding Longitude, Mode=TwoWay}">
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        
+        <Button Grid.Row="1"
+                Content="Add Hint"
+                CommandParameter="{StaticResource hint}"
+                Command="{Binding ContentViewModel.AddHint}"
+                Click="Button_Click">
+
+        </Button>
+    </Grid>
+</Page>

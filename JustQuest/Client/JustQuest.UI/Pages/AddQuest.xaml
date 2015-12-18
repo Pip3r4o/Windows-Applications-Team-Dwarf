@@ -6,49 +6,58 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps">
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:viewModels="using:JustQuest.UI.DataModels">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="20,20,20,20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="300"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" 
-                             PlaceholderText="Name" 
-                             Name="Name"/>
-        <TextBox Grid.Row="1" 
-                             PlaceholderText="Task" 
-                             Name="Task"/>
-        <TextBox Grid.Row="2" 
-                             PlaceholderText="Possible Answers" 
-                             Name="PossibleAnswers"/>
-        <maps:MapControl Grid.Row="3"
-       x:Name="myMap"            
-       ZoomInteractionMode="GestureAndControl"
-       TiltInteractionMode="GestureAndControl" />
+        <Grid.Resources>
+            <viewModels:Quest x:Key="quest"/>
+        </Grid.Resources>
+        <Grid Grid.Row="0"
+              DataContext="{StaticResource quest}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" 
+                     PlaceholderText="Name" 
+                     Name="Name"
+                     Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBox Grid.Row="1" 
+                     PlaceholderText="Task" 
+                     Name="Task"
+                     Text="{Binding Task, Mode=TwoWay}"/>
+            <TextBox Grid.Row="2" 
+                     PlaceholderText="Possible Answers" 
+                     Name="PossibleAnswers"
+                     Text="{Binding PossibleAnswers, Mode=TwoWay}"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Button Content="Add Hint"
+                    Grid.Row="1"
+                    Click="Add_Hint">
+            </Button>
+        </Grid>
+
         <Button Content="Add Quest"
-                                    Grid.Row="4"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                Click="Button_Click"
-                       />
-
-        <StackPanel x:Name="StatusPanel" 
-                    Grid.Row="5"
-                    Orientation="Vertical" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-            <TextBlock x:Name="StatusLabel" Margin="10,0,0,10" TextWrapping="Wrap" Text="Status:" />
-            <Border x:Name="StatusBorder" Margin="0,0,0,0">
-                <ScrollViewer VerticalScrollMode="Auto"  VerticalScrollBarVisibility="Auto" MaxHeight="200">
-                    <TextBlock x:Name="StatusBlock" FontWeight="Bold" 
-                                   MaxWidth="{Binding ElementName=Splitter, Path=ActualWidth}" Margin="10,10,10,20" TextWrapping="Wrap"  />
-                </ScrollViewer>
-            </Border>
-        </StackPanel>
-
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                CommandParameter="{StaticResource quest}"
+                Command="{Binding ContentViewModel.AddQuest}"/>
     </Grid>
     
 </Page>
