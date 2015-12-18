@@ -16,7 +16,7 @@
         public int PointsAward { get; set; }
 
         // TODO: DECIDE WHETHER ANSWER VALIDATION WILL HAPPEN ON SERVER OR CLIENT
-        public ICollection<string> PossibleAnswers { get; set; }
+        public string PossibleAnswers { get; set; }
 
         public ICollection<HintResponseModel> Hints { get; set; }
 

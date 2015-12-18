@@ -1,5 +1,6 @@
 ﻿namespace JustQuest.Server.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Http;
     using AutoMapper;
@@ -71,7 +72,7 @@
 
             // TODO: DECIDE WHETHER ANSWER VALIDATION WILL HAPPEN ON SERVER OR CLIENT
 
-            bool isValidAnswer = quest.PossibleAnswers.Any(x => x == answer);
+            bool isValidAnswer = quest.PossibleAnswers.IndexOf(answer.Trim().ToLower(), StringComparison.Ordinal) >= 0;
 
             if (isValidAnswer)
             {
@@ -112,9 +113,8 @@
                 return this.Ok(0);
             }
         }
-
-        // TODO: replace with a request model
-        public IHttpActionResult Post(Quest quest)
+        
+        public IHttpActionResult Post(QuestRequestModel quest)
         {
             var currentUserId = User.Identity.GetUserId();
             var user = this.data.Users.All().FirstOrDefault(x => x.Id == currentUserId);
@@ -123,10 +123,14 @@
             {
                 return
                     this.BadRequest(
-                        "Not enough rupees to create a quest. Go look for some adventures and come back later!");
+                        "Not enough rupees to create a quest. Go complete adventures and come back later!");
             }
 
-            user.Quests.Add(quest);
+            quest.PossibleAnswers = quest.PossibleAnswers.ToLowerInvariant();
+
+            var model = Mapper.Map<Quest>(quest);
+
+            user.Quests.Add(model);
 
             this.data.Users.Update(user);
             this.data.SaveChanges();

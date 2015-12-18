@@ -21,7 +21,7 @@
 
         public int NumberOfRemainingCorrectGuesses { get; set; }
 
-        public ICollection<string> PossibleAnswers { get; set; }
+        public string PossibleAnswers { get; set; }
 
         public virtual ICollection<Hint> Hints { get { return this.hints; } set { this.hints = value; } }
 

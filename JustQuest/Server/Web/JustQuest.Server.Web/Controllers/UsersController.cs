@@ -22,7 +22,7 @@
         {
         }
 
-        [Route("MyQuests")]
+        [Route("~/api/users/myquests")]
         [HttpGet]
         public IHttpActionResult GetMyQuests()
         {
