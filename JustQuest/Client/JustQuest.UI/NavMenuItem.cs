@@ -23,5 +23,12 @@ namespace JustQuest.UI
         public Type DestPage { get; set; }
 
         public object Arguments { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = (NavMenuItem) obj;
+
+            return Label.Equals(other.Label);
+        }
     }
 }

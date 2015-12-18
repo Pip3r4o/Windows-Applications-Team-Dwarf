@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace JustQuest.UI
 {
+    using Data;
     using Pages;
 
     /// <summary>
@@ -38,24 +39,6 @@ namespace JustQuest.UI
                     Label = "Home",
                     DestPage = typeof(MainPage)
                 },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.Edit,
-                    Label = "Register",
-                    DestPage = typeof(Register)
-                },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.Account,
-                    Label = "Login",
-                    DestPage = typeof(Login)
-                },
-                 new NavMenuItem()
-                {
-                    Symbol = Symbol.Add,
-                    Label = "Add Quest",
-                    DestPage = typeof(AddQuest)
-                },
             });
 
         public static AppShell Current = null;
@@ -68,6 +51,8 @@ namespace JustQuest.UI
         public AppShell()
         {
             this.InitializeComponent();
+
+            SQLiteData.InitAsync();
 
             this.Loaded += (sender, args) =>
             {
@@ -86,6 +71,42 @@ namespace JustQuest.UI
                 });
 
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
+
+            GetNavMenuItems();
+        }
+
+        private async void GetNavMenuItems()
+        {
+            var creds = (await SQLiteData.GetUserCredentials()) != null;
+
+            if (creds)
+            {
+                navlist.Add(
+                    new NavMenuItem
+                    {
+                        Symbol = Symbol.Add,
+                        Label = "Add Quest",
+                        DestPage = typeof(AddQuest)
+                    });
+            }
+            else
+            {
+                navlist.Add(
+                    new NavMenuItem()
+                    {
+                        Symbol = Symbol.Edit,
+                        Label = "Register",
+                        DestPage = typeof(Register)
+                    });
+
+                navlist.Add(
+                    new NavMenuItem()
+                    {
+                        Symbol = Symbol.Account,
+                        Label = "Login",
+                        DestPage = typeof(Login)
+                    });
+            }
 
             NavMenuList.ItemsSource = navlist;
         }
