@@ -22,6 +22,7 @@ namespace JustQuest.UI
 {
     using Data;
     using Pages;
+    using Controls;
 
     /// <summary>
     /// The "chrome" layer of the app that provides top-level navigation with

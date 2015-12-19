@@ -141,5 +141,21 @@
 
             return this.Ok();
         }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var quest = this.data.Quests.All()
+                .FirstOrDefault(x => x.Id == id);
+
+            if (quest == null)
+            {
+                return this.BadRequest("No Quest with that Id exists in the database.");
+            }
+
+            this.data.Quests.Delete(quest);
+            this.data.SaveChanges();
+
+            return this.Ok();
+        }
     }
 }

@@ -121,18 +121,27 @@
     <Compile Include="Helpers\DialogResult.cs" />
     <Compile Include="Helpers\HttpRequester.cs" />
     <Compile Include="Helpers\MessageBox.cs" />
-    <Compile Include="NavMenuItem.cs" />
+    <Compile Include="Controls\NavMenuItem.cs" />
     <Compile Include="Pages\AddHint.xaml.cs">
       <DependentUpon>AddHint.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddQuest.xaml.cs">
       <DependentUpon>AddQuest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AllQuests.xaml.cs">
+      <DependentUpon>AllQuests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Leaderboards.xaml.cs">
+      <DependentUpon>Leaderboards.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Quest.xaml.cs">
+      <DependentUpon>Quest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -211,11 +220,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AllQuests.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Leaderboards.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Quest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

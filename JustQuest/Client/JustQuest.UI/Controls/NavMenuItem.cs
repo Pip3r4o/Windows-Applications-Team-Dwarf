@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 
-namespace JustQuest.UI
+namespace JustQuest.UI.Controls
 {
     /// <summary>
     /// Data to represent an item in the nav menu.
