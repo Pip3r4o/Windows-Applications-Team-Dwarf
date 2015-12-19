@@ -162,6 +162,7 @@
     <Content Include="Assets\bg1.png" />
     <Content Include="Assets\BigLiveTile1.jpg" />
     <Content Include="Assets\BigLiveTile2.jpg" />
+    <Content Include="Assets\brown.jpg" />
     <Content Include="Assets\coin.png" />
     <Content Include="Assets\DarkGray.png" />
     <Content Include="Assets\dwarf.png" />
@@ -188,6 +189,7 @@
     <Content Include="Assets\HubPage\Star.png" />
     <Content Include="Assets\HubPage\Star2.png" />
     <Content Include="Assets\HubPage\Star3.png" />
+    <Content Include="Assets\images.jpg" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\ListBackground.png" />
     <Content Include="Assets\Logo.png" />
