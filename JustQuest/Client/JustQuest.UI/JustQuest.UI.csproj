@@ -105,10 +105,8 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\HintDataModels\AddHintViewModel.cs" />
     <Compile Include="DataModels\QuestDataModels\AddQuestViewModel.cs" />
     <Compile Include="DataModels\HintDataModels\Hint.cs" />
-    <Compile Include="DataModels\HintDataModels\HintViewModel.cs" />
     <Compile Include="DataModels\IContentViewModel.cs" />
     <Compile Include="DataModels\IPageViewModel.cs" />
     <Compile Include="DataModels\QuestDataModels\Quest.cs" />
@@ -117,6 +115,7 @@
     <Compile Include="DataModels\User.cs" />
     <Compile Include="DataModels\UserViewModel.cs" />
     <Compile Include="DataModels\ViewModelBase.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Helpers\BadRequestHandler.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\DialogResult.cs" />

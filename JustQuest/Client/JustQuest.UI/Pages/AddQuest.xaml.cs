@@ -37,6 +37,11 @@ namespace JustQuest.UI.Pages
             this.InitializeComponent();
 
             var contentViewModel = new QuestViewModel();
+            contentViewModel.Hints = new List<Hint>();
+            {
+                new Hint("gggg", "2332", "2342");
+            };
+
             this.DataContext = new AddQuestViewModel(contentViewModel);
 
 

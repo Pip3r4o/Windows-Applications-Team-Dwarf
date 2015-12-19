@@ -9,6 +9,33 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:viewModels="using:JustQuest.UI.DataModels">
 
+    <Page.Resources>
+        <DataTemplate x:Key="hintItemTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Description}" 
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                           Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding Latitude}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                            Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding Longitude}"
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                            Margin="5,5,5,5"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Margin="20,20,20,20">
         <Grid.RowDefinitions>
@@ -45,7 +72,11 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
-            
+            <Grid Name="panelContent"
+              Grid.Row="0">
+                <ListBox ItemsSource="{Binding ContentViewModel.Hints}"
+                     ItemTemplate="{StaticResource hintItemTemplate}"/>
+            </Grid>
             <Button Content="Add Hint"
                     Grid.Row="1"
                     Click="Add_Hint">

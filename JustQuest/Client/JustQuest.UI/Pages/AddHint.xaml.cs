@@ -30,8 +30,8 @@ namespace JustQuest.UI.Pages
         {
             this.InitializeComponent();
 
-            var contentViewModel = new HintViewModel();
-            this.DataContext = new AddHintViewModel(contentViewModel);
+            var contentViewModel = new QuestViewModel();
+            this.DataContext = new AddQuestViewModel(contentViewModel);
 
             myMap.Loaded += MyMap_Loaded;
             myMap.MapTapped += MyMap_MapTapped;
