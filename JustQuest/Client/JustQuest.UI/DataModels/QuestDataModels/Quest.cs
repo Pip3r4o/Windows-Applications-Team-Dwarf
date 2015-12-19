@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JustQuest.UI.DataModels
+﻿namespace JustQuest.UI.DataModels.QuestDataModels
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using HintDataModels;
+
     public class Quest : ViewModelBase
     {
         public Quest()
@@ -42,7 +39,7 @@ namespace JustQuest.UI.DataModels
         public int PointsAward { get; set; }
 
         public ICollection<Hint> Hints { get; set; }
-        
+
         public void AddHint(Hint hint)
         {
             this.Hints.Add(hint);
