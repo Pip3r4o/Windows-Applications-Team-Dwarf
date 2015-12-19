@@ -1,30 +1,59 @@
-﻿using JustQuest.UI.Data;
-using JustQuest.UI.Extensions;
-using JustQuest.UI.Helpers;
-using JustQuest.UI.Pages;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace JustQuest.UI.DataModels
+﻿namespace JustQuest.UI.DataModels.QuestDataModels
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Data;
+    using Extensions;
+    using Helpers;
+    using HintDataModels;
+    using Newtonsoft.Json;
+
     public class QuestViewModel : ViewModelBase, IContentViewModel
     {
         private ICommand addQuestCommand;
         private ICommand addHintCommand;
-        public static List<Hint> hintsToAdd = new List<Hint>();
-        public ObservableCollection<Hint> hints;
-        private readonly HttpRequester httpClient = new HttpRequester();
+        public static List<Hint> hintsToAdd;
+        private ObservableCollection<Hint> hints;
+        private ICollection<Quest> quests;
+        private readonly HttpRequester httpClient;
 
-        public IEnumerable<Hint> Hints
+        public QuestViewModel()
+        {
+            httpClient = new HttpRequester();
+            hintsToAdd = new List<Hint>();
+        }
+
+        public ICollection<Quest> Quests
+        {
+            get
+            {
+                if (this.quests == null)
+                {
+                    this.quests = new ObservableCollection<Quest>();
+                }
+
+                return this.quests;
+            }
+            set
+            {
+                if (this.quests == null)
+                {
+                    this.quests = new ObservableCollection<Quest>();
+                }
+
+                this.quests.Clear();
+
+                foreach (var questToAdd in value)
+                {
+                    this.quests.Add(questToAdd);
+                }
+            }
+        } 
+
+        public ICollection<Hint> Hints
         {
             get
             {
@@ -78,7 +107,6 @@ namespace JustQuest.UI.DataModels
             }
 
         }
-
 
         public ICommand AddHint
         {

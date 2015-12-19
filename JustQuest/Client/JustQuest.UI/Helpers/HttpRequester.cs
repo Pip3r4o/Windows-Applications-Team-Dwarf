@@ -94,7 +94,7 @@
         {
             try
             {
-                var response = await this.client.GetAsync(url);
+                var response = await this.client.GetAsync(this.baseUrl + url);
 
                 return response;
             }

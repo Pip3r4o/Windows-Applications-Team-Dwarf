@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
-    xmlns:viewModels="using:JustQuest.UI.DataModels">
+    xmlns:viewModels="using:JustQuest.UI.DataModels.QuestDataModels"
+    xmlns:questDataModels="using:JustQuest.UI.DataModels.QuestDataModels">
 
     <Page.Resources>
         <DataTemplate x:Key="hintItemTemplate">
@@ -44,7 +45,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
-            <viewModels:Quest x:Key="quest"/>
+            <questDataModels:Quest x:Key="quest"/>
         </Grid.Resources>
         <Grid Grid.Row="0"
               DataContext="{StaticResource quest}">

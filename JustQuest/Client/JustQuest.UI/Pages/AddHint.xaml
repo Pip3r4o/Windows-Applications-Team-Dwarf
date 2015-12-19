@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
-    xmlns:viewModels="using:JustQuest.UI.DataModels">
+    xmlns:viewModels="using:JustQuest.UI.DataModels.HintDataModels"
+    xmlns:hintDataModels="using:JustQuest.UI.DataModels.HintDataModels">
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Margin="20,20,20,20">
@@ -16,7 +17,7 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.Resources>
-            <viewModels:Hint x:Key="hint"/>
+            <hintDataModels:Hint x:Key="hint"/>
         </Grid.Resources>
         <Grid Grid.Row="0"
               DataContext="{StaticResource hint}">

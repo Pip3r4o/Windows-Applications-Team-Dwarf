@@ -10,7 +10,8 @@
 
     <Page.Resources>
         <DataTemplate x:Key="QuestDataTemplate">
-            <Grid>
+            <Grid Margin="0, 15, 0, 15"
+                  Padding="10, 5, 10, 5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="3*"/>
@@ -20,7 +21,8 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"
+                <TextBlock MinWidth="300"
+                    Grid.Column="0"
                          Grid.Row="0"
                          Text="{Binding Name}">
                 </TextBlock>
@@ -30,9 +32,10 @@
                            Text="{Binding Hints.Count}">
                 </TextBlock>
 
-                <TextBlock Grid.Column="0"
+                <TextBlock MinWidth="300"
+                    Grid.Column="0"
                            Grid.Row="1"
-                           Text="{Binding Description}">
+                           Text="{Binding Task}">
                 </TextBlock>
 
                 <TextBlock Grid.Column="1"
@@ -46,6 +49,15 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="panelContent"
+              Grid.Row="0">
+            <ListBox 
+                ItemsSource="{Binding ContentViewModel.Quests}"
+                     ItemTemplate="{StaticResource QuestDataTemplate}"/>
+        </Grid>
     </Grid>
 </Page>

@@ -31,17 +31,8 @@ namespace JustQuest.UI
     public sealed partial class AppShell : Page
     {
         // Declare the top level nav items
-        private List<NavMenuItem> navlist = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.Contact,
-                    Label = "Home",
-                    DestPage = typeof(MainPage)
-                },
-            });
-
+        private List<NavMenuItem> navlist = new List<NavMenuItem>();
+                
         public static AppShell Current = null;
 
         /// <summary>
@@ -80,14 +71,55 @@ namespace JustQuest.UI
         {
             var creds = (await SQLiteData.GetUserCredentials()) != null;
 
+            navlist.Add(
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Contact,
+                    Label = "Home",
+                    DestPage = typeof (MainPage)
+                });
+
+            navlist.Add(
+                    new NavMenuItem()
+                    {
+                        Symbol = Symbol.SolidStar,
+                        Label = "Leaderboards",
+                        DestPage = typeof(Leaderboards)
+                    });
+
+            navlist.Add(
+                new NavMenuItem
+                {
+                    Symbol = Symbol.ContactInfo,
+                    Label = "Instructions",
+                    DestPage = typeof(Instructions)
+                });
+
             if (creds)
             {
+                
                 navlist.Add(
                     new NavMenuItem
                     {
                         Symbol = Symbol.Add,
                         Label = "Add Quest",
                         DestPage = typeof(AddQuest)
+                    });
+
+                navlist.Add(
+                    new NavMenuItem
+                    {
+                        Symbol = Symbol.AllApps,
+                        Label = "All Quests",
+                        DestPage = typeof(AllQuests)
+                    });
+
+                navlist.Add(
+                    new NavMenuItem
+                    {
+                        Symbol = Symbol.AllApps,
+                        Label = "My Quest",
+                        DestPage = typeof(MyQuests)
                     });
             }
             else
