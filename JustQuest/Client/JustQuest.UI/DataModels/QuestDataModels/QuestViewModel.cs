@@ -1,6 +1,7 @@
 ﻿using JustQuest.UI.Data;
 using JustQuest.UI.Extensions;
 using JustQuest.UI.Helpers;
+using JustQuest.UI.Pages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace JustQuest.UI.DataModels
 {
@@ -19,7 +22,7 @@ namespace JustQuest.UI.DataModels
         private ICommand addHintCommand;
         public static List<Hint> hintsToAdd = new List<Hint>();
         public ObservableCollection<Hint> hints;
-        private readonly HttpRequester httpClient;
+        private readonly HttpRequester httpClient = new HttpRequester();
 
         public IEnumerable<Hint> Hints
         {
@@ -67,8 +70,8 @@ namespace JustQuest.UI.DataModels
 
                         // TODO:
                         object questFormDetails = JsonConvert.SerializeObject(quest);
-
-                        var response = await httpClient.PostData(questFormDetails, "api/Quests", token);
+                        var response = await httpClient.PostData(quest, "api/Quests", token);
+                        hintsToAdd.Clear();
                     });
                 }
                 return this.addQuestCommand;
@@ -87,7 +90,9 @@ namespace JustQuest.UI.DataModels
                     this.addHintCommand = new DelegateCommand<Hint>((hint) =>
                     {
                         hintsToAdd.Add(hint);
+                        ((Window.Current.Content as AppShell).AppFrame as Frame).GoBack();
                     });
+                    
                 }
                 return this.addHintCommand;
             }

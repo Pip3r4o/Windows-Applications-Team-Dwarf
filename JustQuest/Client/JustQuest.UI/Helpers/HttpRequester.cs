@@ -73,7 +73,7 @@
             {
                 var json = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data));
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await this.client.PostAsync(url, content);
+                var response = await this.client.PostAsync(baseUrl + url, content);
 
                 return response;
             }

@@ -37,16 +37,6 @@ namespace JustQuest.UI.Pages
             myMap.MapTapped += MyMap_MapTapped;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Frame.CanGoBack)
-            {
-                Frame.GoBack();
-            }
-        }
-
-
-
         private async void MyMap_Loaded(object sender, RoutedEventArgs e)
         {
             var accessStatus = await Geolocator.RequestAccessAsync();
