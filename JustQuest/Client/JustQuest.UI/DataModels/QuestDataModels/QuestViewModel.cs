@@ -15,7 +15,7 @@
     {
         private ICommand addQuestCommand;
         private ICommand addHintCommand;
-        public static List<Hint> hintsToAdd;
+        public static List<Hint> hintsToAdd = new List<Hint>();
         private ObservableCollection<Hint> hints;
         private ICollection<Quest> quests;
         private readonly HttpRequester httpClient;
@@ -23,7 +23,6 @@
         public QuestViewModel()
         {
             httpClient = new HttpRequester();
-            hintsToAdd = new List<Hint>();
         }
 
         public ICollection<Quest> Quests

@@ -9,55 +9,87 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="QuestDataTemplate">
-            <Grid Margin="0, 15, 0, 15"
-                  Padding="10, 5, 10, 5">
+        <DataTemplate 
+            x:Key="QuestDataTemplate">
+            <Grid Width="400">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock MinWidth="300"
+                <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="1,1,0,0"
                     Grid.Column="0"
-                         Grid.Row="0"
-                         Text="{Binding Name}">
-                </TextBlock>
+                    Grid.Row="0">
+                    <TextBlock 
+                    Style="{StaticResource AllQuestsTextBLock}"
+                    Text="{Binding Name}">
+                    </TextBlock>
+                </Border>
 
-                <TextBlock Grid.Column="1"
-                           Grid.Row="0"
-                           Text="{Binding Hints.Count}">
-                </TextBlock>
-
-                <TextBlock MinWidth="300"
+                <Grid
+                     Style="{StaticResource HintsFieldStyle}"
+                     Grid.Column="1"
+                    Grid.Row="0">
+                    <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="0,1,1,0">
+                    <TextBlock
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold"
+                    Text="{Binding Hints.Count}">
+                    </TextBlock>
+                    </Border>
+                </Grid>
+                <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="1,0,0,1"
                     Grid.Column="0"
-                           Grid.Row="1"
-                           Text="{Binding Task}">
-                </TextBlock>
-
-                <TextBlock Grid.Column="1"
-                           Grid.Row="1"
-                           Text="{Binding PointsAward}"
-                           TextAlignment="Right"
-                           VerticalAlignment="Center">
-                </TextBlock>
+                    Grid.Row="1">
+                        <TextBlock 
+                    Text="{Binding Task}">
+                        </TextBlock>
+                    </Border>
+                <Grid
+                    Style="{StaticResource PointsFieldStyle}"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="0,0,1,1"
+                    >
+                        <TextBlock 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                    Text="{Binding PointsAward}">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+               
             </Grid>
         </DataTemplate>
-    </Page.Resources>
+      </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        Style="{StaticResource PageStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Grid Name="panelContent"
-              Grid.Row="0">
+        <Grid 
+            Name="panelContent"
+            Grid.Row="0">
             <ListBox 
+                Width="450"
+                Style="{StaticResource ListItemsStyle}"
                 ItemsSource="{Binding ContentViewModel.Quests}"
-                     ItemTemplate="{StaticResource QuestDataTemplate}"/>
+                ItemTemplate="{StaticResource QuestDataTemplate}"/>
         </Grid>
     </Grid>
 </Page>

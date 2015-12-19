@@ -48,7 +48,7 @@ namespace JustQuest.UI.Pages
             var token = credentials.Token ?? "";
 
             // Display only other users' quests
-            var response = await this.httpClient.GetDataAuthorize("api/quests", token);
+            var response = await this.httpClient.GetDataAuthorize("api/users/myquests", token);
 
             if (response.IsSuccessStatusCode)
             {

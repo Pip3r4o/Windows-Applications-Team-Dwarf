@@ -162,8 +162,10 @@
     <Content Include="Assets\bg1.png" />
     <Content Include="Assets\BigLiveTile1.jpg" />
     <Content Include="Assets\BigLiveTile2.jpg" />
+    <Content Include="Assets\coin.png" />
     <Content Include="Assets\DarkGray.png" />
     <Content Include="Assets\dwarf.png" />
+    <Content Include="Assets\hint.png" />
     <Content Include="Assets\HubPage\Bell.png" />
     <Content Include="Assets\HubPage\CallRight.png" />
     <Content Include="Assets\HubPage\CalterPic1.png" />
@@ -187,6 +189,7 @@
     <Content Include="Assets\HubPage\Star2.png" />
     <Content Include="Assets\HubPage\Star3.png" />
     <Content Include="Assets\LightGray.png" />
+    <Content Include="Assets\ListBackground.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\MainLogo.png" />
     <Content Include="Assets\MediumGray.png" />
@@ -195,6 +198,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\widelogo.png" />
+    <Content Include="Assets\wood.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -127,7 +127,6 @@
         <Setter Property="Background">
             <Setter.Value>
                 <ImageBrush ImageSource="../Assets/bg1.png" Stretch="UniformToFill"></ImageBrush>
-                
             </Setter.Value>
         </Setter>
     </Style>
@@ -135,8 +134,50 @@
     <Style x:Key="MenuStyle" TargetType="ListView">
         <Setter Property="Background" >
             <Setter.Value>
-                <ImageBrush ImageSource="../Assets/dwarf.png" Stretch="Uniform" AlignmentY="Bottom"></ImageBrush>
+                <ImageBrush ImageSource="../Assets/dwarf.png" Stretch="None" AlignmentY="Bottom"></ImageBrush>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ListItemsStyle" TargetType="ListBox">
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Color="Beige"></SolidColorBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="Margin" Value="10,40,10,10"></Setter>
+    </Style>
+
+    <Style x:Key="ListQuestsStyle" TargetType="Grid">
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Color="Pink"></SolidColorBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+    </Style>
+
+    <Style x:Key="AllQuestsTextBLock" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="ExtraBold"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+    </Style>
+
+    <Style x:Key="PointsFieldStyle" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="../Assets/coin.png" Stretch="Fill"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HintsFieldStyle" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="../Assets/hint.png" Stretch="None" AlignmentX="Right"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

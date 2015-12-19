@@ -73,10 +73,13 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Name="panelContent"
-              Grid.Row="0">
-                <ListBox ItemsSource="{Binding ContentViewModel.Hints}"
-                     ItemTemplate="{StaticResource hintItemTemplate}"/>
+            <Grid
+                Name="panelContent"
+                Grid.Row="0">
+                <ListBox 
+                    Style="{StaticResource ListItemsStyle}"
+                    ItemsSource="{Binding ContentViewModel.Hints}"
+                    ItemTemplate="{StaticResource hintItemTemplate}"/>
             </Grid>
             <Button Content="Add Hint"
                     Grid.Row="1"
