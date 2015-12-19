@@ -9,10 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="../Assets/bg1.png" Stretch="UniformToFill"/>
-            </Grid.Background>
+        <Grid Style="{StaticResource PageStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>
                 <RowDefinition Height="*"/>

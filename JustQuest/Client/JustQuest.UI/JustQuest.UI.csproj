@@ -159,6 +159,7 @@
     <Content Include="Assets\BigLiveTile1.jpg" />
     <Content Include="Assets\BigLiveTile2.jpg" />
     <Content Include="Assets\DarkGray.png" />
+    <Content Include="Assets\dwarf.png" />
     <Content Include="Assets\HubPage\Bell.png" />
     <Content Include="Assets\HubPage\CallRight.png" />
     <Content Include="Assets\HubPage\CalterPic1.png" />

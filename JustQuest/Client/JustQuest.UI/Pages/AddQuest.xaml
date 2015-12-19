@@ -36,7 +36,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+   <Grid Style="{StaticResource PageStyle}"
           Margin="20,20,20,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>

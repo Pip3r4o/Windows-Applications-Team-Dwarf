@@ -11,7 +11,12 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            <Style TargetType="Button"  BasedOn="{StaticResource ButtonStyle}" />
+            <!--<Style TargetType="StackPanel" BasedOn="{StaticResource StackPanelStyle}"/>
+           <Style TargetType="Image" BasedOn="{StaticResource ImageStyle}"/>
+           <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}"/>
+           <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
+           <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>-->
         </ResourceDictionary>
     </Application.Resources>
 
