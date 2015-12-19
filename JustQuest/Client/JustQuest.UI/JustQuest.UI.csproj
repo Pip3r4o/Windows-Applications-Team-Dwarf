@@ -199,6 +199,9 @@
     <Content Include="Assets\SmallLiveTile2.jpg" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
     <Content Include="Assets\widelogo.png" />
     <Content Include="Assets\wood.jpg" />
     <Content Include="Properties\Default.rd.xml" />
