@@ -66,5 +66,21 @@
                 this.Frame.Navigate(typeof(MyQuests));
             }
         }
+
+        private async void Grid_OnHolding(object sender, HoldingRoutedEventArgs e)
+        {
+            var id = (((sender as Grid).DataContext) as Quest).Id;
+
+            var userCredentials = await SQLiteData.GetUserCredentials();
+
+            var token = userCredentials.Token ?? "";
+
+            var response = await httpClient.Delete(id, "api/Quests", token);
+
+            if (response.IsSuccessStatusCode)
+            {
+                this.Frame.Navigate(typeof(MyQuests));
+            }
+        }
     }
 }

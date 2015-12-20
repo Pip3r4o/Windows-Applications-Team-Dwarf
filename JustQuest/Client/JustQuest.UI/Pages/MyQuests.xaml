@@ -12,11 +12,12 @@
     <Page.Resources>
         <DataTemplate 
             x:Key="QuestDataTemplate">
-            <Grid Width="400"
-                  Tapped="Grid_Tapped">
+            <Grid 
+                Width="280"
+                  Holding="Grid_OnHolding">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*"/>
@@ -92,11 +93,11 @@
         <Grid 
             Name="panelContent"
             Grid.Row="1">
-            <ListBox 
-                Width="450"
+                <ListBox
                 Style="{StaticResource ListItemsStyle}"
                 ItemsSource="{Binding ContentViewModel.Quests}"
-                ItemTemplate="{StaticResource QuestDataTemplate}"/>
+                ItemTemplate="{StaticResource QuestDataTemplate}">
+                </ListBox>
         </Grid>
     </Grid>
 </Page>

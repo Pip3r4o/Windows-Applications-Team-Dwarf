@@ -139,6 +139,7 @@
     </Style>
 
     <Style x:Key="ListItemsStyle" TargetType="ListBox">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="Background" >
             <Setter.Value>
                 <SolidColorBrush Color="Beige"></SolidColorBrush>
@@ -160,7 +161,7 @@
 
     <Style x:Key="AllQuestsTextBLock" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="ExtraBold"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="Margin" Value="10"></Setter>
     </Style>
 
