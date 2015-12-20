@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ApplicationSettings;
+using System.Threading.Tasks;
 
 namespace JustQuest.UI
 {
@@ -106,5 +108,7 @@ namespace JustQuest.UI
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+       
     }
 }

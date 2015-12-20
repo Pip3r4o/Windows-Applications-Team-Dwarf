@@ -10,10 +10,10 @@
     using Helpers;
     using HintDataModels;
     using Newtonsoft.Json;
-
+    using Pages;
     public class QuestViewModel : ViewModelBase, IContentViewModel
     {
-        private ICommand addQuestCommand;
+        private ICommand removeQuestCommand;
         private ICommand addHintCommand;
         public static List<Hint> hintsToAdd = new List<Hint>();
         private ObservableCollection<Hint> hints;
@@ -83,10 +83,10 @@
         {
             get
             {
-                if (this.addQuestCommand == null)
+                if (this.removeQuestCommand == null)
                 {
 
-                    this.addQuestCommand = new DelegateCommand<Quest>(async (quest) =>
+                    this.removeQuestCommand = new DelegateCommand<Quest>(async (quest) =>
                     {
                         foreach (var hint in hintsToAdd)
                         {
@@ -102,11 +102,10 @@
                         hintsToAdd.Clear();
                     });
                 }
-                return this.addQuestCommand;
+                return this.removeQuestCommand;
             }
 
         }
-
         public ICommand AddHint
         {
             get

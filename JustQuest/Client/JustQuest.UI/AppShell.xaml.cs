@@ -70,14 +70,13 @@ namespace JustQuest.UI
         private async void GetNavMenuItems()
         {
             var creds = (await SQLiteData.GetUserCredentials()) != null;
-
-            navlist.Add(
+            navlist.Clear();
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Contact,
                     Label = "Home",
                     DestPage = typeof (MainPage)
-                });
+                };
 
             navlist.Add(
                     new NavMenuItem()
@@ -119,6 +118,13 @@ namespace JustQuest.UI
                         Symbol = Symbol.AllApps,
                         Label = "My Quest",
                         DestPage = typeof(MyQuests)
+                    });
+                navlist.Add(
+                    new NavMenuItem
+                    {
+                        Symbol = Symbol.Clear,
+                        Label = "Logout",
+                        DestPage = typeof(Login)
                     });
             }
             else

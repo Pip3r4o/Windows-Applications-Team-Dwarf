@@ -103,5 +103,21 @@
                 return null;
             }
         }
+        public async Task<HttpResponseMessage> Delete (int id, string url, string token)
+        {
+            try
+            {
+                this.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await this.client.DeleteAsync(this.baseUrl + url + "/" + id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

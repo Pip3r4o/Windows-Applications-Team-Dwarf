@@ -1,15 +1,17 @@
 ﻿namespace JustQuest.UI.Pages
 {
+    using System;
     using System.Collections.Generic;
     using Windows.UI.Xaml.Controls;
     using Data;
     using DataModels.QuestDataModels;
     using Helpers;
     using Newtonsoft.Json;
-
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Popups;
+    using Windows.UI.Xaml;/// <summary>
+                          /// An empty page that can be used on its own or navigated to within a Frame.
+                          /// </summary>
     public sealed partial class MyQuests : Page
     {
         private readonly HttpRequester httpClient;
@@ -47,6 +49,22 @@
                 // TODO:
             }
 
+        }
+
+        private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var id = (((sender as Grid).DataContext) as Quest).Id;
+
+            var userCredentials = await SQLiteData.GetUserCredentials();
+
+            var token = userCredentials.Token ?? "";
+
+            var response = await httpClient.Delete(id, "api/Quests", token);
+
+            if (response.IsSuccessStatusCode)
+            {
+                this.Frame.Navigate(typeof(MyQuests));
+            }
         }
     }
 }

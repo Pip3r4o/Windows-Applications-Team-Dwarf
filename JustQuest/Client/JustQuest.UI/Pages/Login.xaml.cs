@@ -25,6 +25,7 @@ namespace JustQuest.UI.Pages
             this.InitializeComponent();
             this.httpClient = new HttpRequester();
             SQLiteData.InitAsync();
+            SQLiteData.RemoveUserCredentials(SQLiteData.GetDbConnectionAsync());
         }
 
         private void scrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
