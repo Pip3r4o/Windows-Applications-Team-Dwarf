@@ -97,7 +97,6 @@ namespace JustQuest.UI
 
             if (creds)
             {
-                
                 navlist.Add(
                     new NavMenuItem
                     {

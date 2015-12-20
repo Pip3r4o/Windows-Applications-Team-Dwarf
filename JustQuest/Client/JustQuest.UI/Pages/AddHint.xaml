@@ -8,19 +8,27 @@
     mc:Ignorable="d"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:viewModels="using:JustQuest.UI.DataModels.HintDataModels"
-    xmlns:hintDataModels="using:JustQuest.UI.DataModels.HintDataModels">
+    xmlns:hintDataModels="using:JustQuest.UI.DataModels.HintDataModels"
+    xmlns:controls="using:JustQuest.UI.Controls">
     
     <Grid Style="{StaticResource PageStyle}"
         Margin="20,20,20,20">
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <hintDataModels:Hint x:Key="hint"/>
         </Grid.Resources>
-        <Grid Grid.Row="0"
+
+        <controls:PageHeader x:Name="pageHeader">
+            <controls:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Hint"/>
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
+        
+        <Grid Grid.Row="1"
               DataContext="{StaticResource hint}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
@@ -64,7 +72,7 @@
             </StackPanel>
         </Grid>
         
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Content="Add Hint"
                 CommandParameter="{StaticResource hint}"
                 Command="{Binding ContentViewModel.AddHint}">

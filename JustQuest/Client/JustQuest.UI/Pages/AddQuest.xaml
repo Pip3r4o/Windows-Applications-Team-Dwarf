@@ -8,7 +8,8 @@
     mc:Ignorable="d"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:viewModels="using:JustQuest.UI.DataModels.QuestDataModels"
-    xmlns:questDataModels="using:JustQuest.UI.DataModels.QuestDataModels">
+    xmlns:questDataModels="using:JustQuest.UI.DataModels.QuestDataModels"
+    xmlns:controls="using:JustQuest.UI.Controls">
 
     <Page.Resources>
         <DataTemplate x:Key="hintItemTemplate">
@@ -37,9 +38,9 @@
         </DataTemplate>
     </Page.Resources>
 
-   <Grid Style="{StaticResource PageStyle}"
-          Margin="20,20,20,20">
+   <Grid Style="{StaticResource PageStyle}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="150"/>
             <RowDefinition Height="150"/>
             <RowDefinition Height="50"/>
@@ -47,7 +48,12 @@
         <Grid.Resources>
             <questDataModels:Quest x:Key="quest"/>
         </Grid.Resources>
-        <Grid Grid.Row="0"
+        <controls:PageHeader x:Name="pageHeader">
+            <controls:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Quest"/>
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
+        <Grid Grid.Row="1"
               DataContext="{StaticResource quest}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -68,7 +74,7 @@
                      Text="{Binding PossibleAnswers, Mode=TwoWay}"/>
         </Grid>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
@@ -88,7 +94,7 @@
         </Grid>
 
         <Button Content="Add Quest"
-                Grid.Row="2"
+                Grid.Row="3"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 CommandParameter="{StaticResource quest}"

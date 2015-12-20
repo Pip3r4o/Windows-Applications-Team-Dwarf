@@ -105,6 +105,9 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\LeaderboardDataModels\Leaderboard.cs" />
+    <Compile Include="DataModels\LeaderboardDataModels\LeaderboardPageViewModel.cs" />
+    <Compile Include="DataModels\LeaderboardDataModels\LeaderboardViewModel.cs" />
     <Compile Include="DataModels\QuestDataModels\AddQuestViewModel.cs" />
     <Compile Include="DataModels\HintDataModels\Hint.cs" />
     <Compile Include="DataModels\IContentViewModel.cs" />

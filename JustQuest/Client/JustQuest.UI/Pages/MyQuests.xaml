@@ -5,9 +5,97 @@
     xmlns:local="using:JustQuest.UI.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:JustQuest.UI.DataModels"
+    xmlns:controls="using:JustQuest.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate 
+            x:Key="QuestDataTemplate">
+            <Grid Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
 
+                <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="1,1,0,0"
+                    Grid.Column="0"
+                    Grid.Row="0">
+                    <TextBlock 
+                    Style="{StaticResource AllQuestsTextBLock}"
+                    Text="{Binding Name}">
+                    </TextBlock>
+                </Border>
+
+                <Grid
+                     Style="{StaticResource HintsFieldStyle}"
+                     Grid.Column="1"
+                    Grid.Row="0">
+                    <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="0,1,1,0">
+                        <TextBlock
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold"
+                    Text="{Binding Hints.Count}">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="1,0,0,1"
+                    Grid.Column="0"
+                    Grid.Row="1">
+                    <TextBlock 
+                    Text="{Binding Task}">
+                    </TextBlock>
+                </Border>
+                <Grid
+                    Style="{StaticResource PointsFieldStyle}"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <Border 
+                    BorderBrush="Gray" 
+                    BorderThickness="0,0,1,1"
+                    >
+                        <TextBlock 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                    Text="{Binding PointsAward}">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid
+        Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <controls:PageHeader x:Name="pageHeader">
+            <controls:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="My Quests"/>
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
+        <Grid 
+            Name="panelContent"
+            Grid.Row="1">
+            <ListBox 
+                Width="450"
+                Style="{StaticResource ListItemsStyle}"
+                ItemsSource="{Binding ContentViewModel.Quests}"
+                ItemTemplate="{StaticResource QuestDataTemplate}"/>
+        </Grid>
     </Grid>
 </Page>

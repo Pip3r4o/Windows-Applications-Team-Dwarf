@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:JustQuest.UI.DataModels"
+    xmlns:controls="using:JustQuest.UI.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -39,12 +40,12 @@
                     <Border 
                     BorderBrush="Gray" 
                     BorderThickness="0,1,1,0">
-                    <TextBlock
+                        <TextBlock
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         FontWeight="Bold"
                     Text="{Binding Hints.Count}">
-                    </TextBlock>
+                        </TextBlock>
                     </Border>
                 </Grid>
                 <Border 
@@ -52,10 +53,10 @@
                     BorderThickness="1,0,0,1"
                     Grid.Column="0"
                     Grid.Row="1">
-                        <TextBlock 
+                    <TextBlock 
                     Text="{Binding Task}">
-                        </TextBlock>
-                    </Border>
+                    </TextBlock>
+                </Border>
                 <Grid
                     Style="{StaticResource PointsFieldStyle}"
                     Grid.Column="1"
@@ -71,25 +72,34 @@
                         </TextBlock>
                     </Border>
                 </Grid>
-               
+
             </Grid>
         </DataTemplate>
-      </Page.Resources>
+    </Page.Resources>
 
     <Grid
         Style="{StaticResource PageStyle}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
+        <controls:PageHeader x:Name="pageHeader">
+            <controls:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Active Quests"/>
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
         <Grid 
             Name="panelContent"
-            Grid.Row="0">
-            <ListBox 
+            Grid.Row="1">
+            <ScrollViewer x:Name="scrollViewer"
+                          ViewChanged="ScrollViewer_ViewChanged" VerticalSnapPointsType="MandatorySingle"  VerticalSnapPointsAlignment="Near"
+                          VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListBox 
                 Width="450"
                 Style="{StaticResource ListItemsStyle}"
                 ItemsSource="{Binding ContentViewModel.Quests}"
                 ItemTemplate="{StaticResource QuestDataTemplate}"/>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

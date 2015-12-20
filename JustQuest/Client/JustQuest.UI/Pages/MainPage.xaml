@@ -9,8 +9,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-
-        <x:String x:Key="AppName">Dwarf Quest</x:String>
+        <x:String x:Key="AppName">Just Quest</x:String>
     </Page.Resources>
 
     <Grid Style="{StaticResource PageStyle}">
@@ -21,19 +20,20 @@
         </Grid.RowDefinitions>
         <c:PageHeader x:Name="pageHeader">
             <c:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Dwarf Quest MENU"/>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Just Quest"/>
             </c:PageHeader.HeaderContent>
         </c:PageHeader>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid x:Name="LogoGrid" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Grid.Row="0">
                 <Image Source="../Assets/MainLogo.png"/>
             </Grid>
-            <Grid x:Name="MainGrid" Grid.Row="2">
+            <Grid x:Name="MainGrid" Grid.Row="1">
                 <TextBlock Text="Active Quests"></TextBlock>
             </Grid>
         </Grid>
