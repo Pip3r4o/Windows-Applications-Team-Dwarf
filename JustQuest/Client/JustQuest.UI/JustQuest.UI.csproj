@@ -165,6 +165,7 @@
     <Content Include="Assets\bg1.png" />
     <Content Include="Assets\BigLiveTile1.jpg" />
     <Content Include="Assets\BigLiveTile2.jpg" />
+    <Content Include="Assets\brown.jpg" />
     <Content Include="Assets\coin.png" />
     <Content Include="Assets\DarkGray.png" />
     <Content Include="Assets\dwarf.png" />
@@ -191,6 +192,7 @@
     <Content Include="Assets\HubPage\Star.png" />
     <Content Include="Assets\HubPage\Star2.png" />
     <Content Include="Assets\HubPage\Star3.png" />
+    <Content Include="Assets\images.jpg" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\ListBackground.png" />
     <Content Include="Assets\Logo.png" />
@@ -200,6 +202,9 @@
     <Content Include="Assets\SmallLiveTile2.jpg" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
     <Content Include="Assets\widelogo.png" />
     <Content Include="Assets\wood.jpg" />
     <Content Include="Properties\Default.rd.xml" />

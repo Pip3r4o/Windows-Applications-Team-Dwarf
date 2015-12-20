@@ -12,16 +12,18 @@
     xmlns:controls="using:JustQuest.UI.Controls">
     
     <Grid Style="{StaticResource PageStyle}"
-        Margin="20,20,20,20">
+        Margin="20,40,20,20">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+			<RowDefinition Height="48"/>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Grid.Resources>
             <hintDataModels:Hint x:Key="hint"/>
         </Grid.Resources>
-
+        
         <controls:PageHeader x:Name="pageHeader">
             <controls:PageHeader.HeaderContent>
                 <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Hint"/>
@@ -29,18 +31,21 @@
         </controls:PageHeader>
         
         <Grid Grid.Row="1"
-              DataContext="{StaticResource hint}">
+			DataContext="{StaticResource hint}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height= "2*"></RowDefinition>
                 <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0"
+                     Margin="20,10,20,0"
                  PlaceholderText="Description Hint"
                  Name="Description"
                  Text="{Binding Description, Mode=TwoWay}">
             </TextBox>
-            <maps:MapControl Grid.Row="1"
+            <maps:MapControl 
+                Grid.Row="1"
+                Margin="20,10,20,0"
                          x:Name="myMap"            
                          ZoomInteractionMode="GestureAndControl"
                          TiltInteractionMode="GestureAndControl" />
@@ -50,21 +55,30 @@
                         RelativePanel.AlignBottomWithPanel="True" 
                         RelativePanel.AlignRightWithPanel="True" 
                         RelativePanel.AlignLeftWithPanel="True">
-                <TextBlock x:Name="StatusLabel" 
+                <TextBlock 
+                        FontSize="20"
+                    FontWeight="Bold"
+                    x:Name="StatusLabel" 
                            Margin="10,0,0,10" 
                            TextWrapping="Wrap" 
-                           Text="Status:" />
+                           Text="Location:" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="LatitudeBox" 
+                    <TextBox
+                        Margin="30,0,30,0"
+                        PlaceholderText="Latitude"
+                        Name="LatitudeBox" 
                                Grid.Row="0" 
                                Text="{Binding Latitude, Mode=TwoWay}">
                     </TextBox>
-                    <TextBox Name="LongitudeBox" 
+                    <TextBox 
+                         Margin="30,0,30,0"
+                        PlaceholderText="Longitude"
+                        Name="LongitudeBox" 
                                Grid.Row="1"
                                Text="{Binding Longitude, Mode=TwoWay}">
                     </TextBox>
@@ -73,6 +87,8 @@
         </Grid>
         
         <Button Grid.Row="2"
+                HorizontalAlignment="Center"
+                Width="200"
                 Content="Add Hint"
                 CommandParameter="{StaticResource hint}"
                 Command="{Binding ContentViewModel.AddHint}">

@@ -111,14 +111,13 @@
     </Style>
 
     <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Black"></Setter>
         <Setter Property="Background">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="#FF617584" Offset="1"/>
-                </LinearGradientBrush>
+                <ImageBrush ImageSource="../Assets/brown.jpg" Stretch="UniformToFill"></ImageBrush>
             </Setter.Value>
         </Setter>
     </Style>
@@ -178,6 +177,10 @@
                 <ImageBrush ImageSource="../Assets/hint.png" Stretch="None" AlignmentX="Right"></ImageBrush>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="AddQuestTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Margin" Value="10"></Setter>
     </Style>
 
 </ResourceDictionary>

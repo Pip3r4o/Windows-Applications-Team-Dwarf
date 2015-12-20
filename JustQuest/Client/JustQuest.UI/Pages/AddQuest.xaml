@@ -61,14 +61,17 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0" 
+                     Style="{StaticResource AddQuestTextBoxStyle}"
                      PlaceholderText="Name" 
                      Name="Name"
                      Text="{Binding Name, Mode=TwoWay}"/>
             <TextBox Grid.Row="1" 
+                     Style="{StaticResource AddQuestTextBoxStyle}"
                      PlaceholderText="Task" 
                      Name="Task"
                      Text="{Binding Task, Mode=TwoWay}"/>
             <TextBox Grid.Row="2" 
+                     Style="{StaticResource AddQuestTextBoxStyle}"
                      PlaceholderText="Possible Answers" 
                      Name="PossibleAnswers"
                      Text="{Binding PossibleAnswers, Mode=TwoWay}"/>
@@ -87,7 +90,9 @@
                     ItemsSource="{Binding ContentViewModel.Hints}"
                     ItemTemplate="{StaticResource hintItemTemplate}"/>
             </Grid>
-            <Button Content="Add Hint"
+            <Button 
+                Margin="30,0,0,0"
+                Content="Add Hint"
                     Grid.Row="1"
                     Click="Add_Hint">
             </Button>
@@ -95,6 +100,7 @@
 
         <Button Content="Add Quest"
                 Grid.Row="3"
+                Margin="30, 0, 30, 0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 CommandParameter="{StaticResource quest}"
