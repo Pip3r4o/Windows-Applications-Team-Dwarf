@@ -21,6 +21,10 @@ using JustQuest.UI.Helpers;
 
 namespace JustQuest.UI.Pages
 {
+    using Windows.ApplicationModel.Chat;
+    using Windows.ApplicationModel.Contacts;
+    using Windows.Storage;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -51,6 +55,31 @@ namespace JustQuest.UI.Pages
             var token = userCredentials.Token ?? "";
 
             var response = await httpClient.PutData(GuessBox.Text, "api/Quests?id=" + this.currentQuest.Id + "&answer=" + GuessBox.Text, token);
+        }
+
+        private async void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var messageToSend = "Please help me out with a quest I've undertaken! Quest Task: " + currentQuest.Task + "\nThanks!";
+
+            var contactPicker = new ContactPicker();
+            
+            Contact contact = await contactPicker.PickContactAsync();
+
+            ComposeSms(contact, messageToSend);
+        }
+
+        private async void ComposeSms(Contact recipient, string messageBody)
+        {
+            var chatMessage = new ChatMessage();
+            chatMessage.Body = messageBody;
+
+            var phone = recipient.Phones.FirstOrDefault<ContactPhone>();
+            if (phone != null)
+            {
+                chatMessage.Recipients.Add(phone.Number);
+            }
+
+            await ChatMessageManager.ShowComposeSmsMessageAsync(chatMessage);
         }
     }
 }

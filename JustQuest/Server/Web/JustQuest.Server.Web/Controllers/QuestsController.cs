@@ -76,7 +76,7 @@
 
             // TODO: DECIDE WHETHER ANSWER VALIDATION WILL HAPPEN ON SERVER OR CLIENT
 
-            bool isValidAnswer = quest.PossibleAnswers.IndexOf(answer.Trim().ToLower(), StringComparison.Ordinal) >= 0;
+            bool isValidAnswer = quest.PossibleAnswers == answer.ToLower();
 
             if (isValidAnswer)
             {
@@ -89,7 +89,6 @@
                         pointsAwarded = 20;
                         user.Rupees += pointsAwarded;
                         quest.NumberOfRemainingCorrectGuesses -= 1;
-
                         quest.User.Rupees += 100;
                         break;
                     case 2:
@@ -114,8 +113,11 @@
             }
             else
             {
+                this.data.Users.Update(user);
+                this.data.SaveChanges();
                 return this.Ok(0);
             }
+            
         }
         
         public IHttpActionResult Post(QuestRequestModel quest)

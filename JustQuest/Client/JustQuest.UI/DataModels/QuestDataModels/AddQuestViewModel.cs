@@ -7,13 +7,7 @@
             this.ContentViewModel = contentViewModel;
         }
 
-        public string Title
-        {
-            get
-            {
-                return "Add new Quest";
-            }
-        }
+        public string Title => "Add new Quest";
 
         public IContentViewModel ContentViewModel { get; set; }
     }

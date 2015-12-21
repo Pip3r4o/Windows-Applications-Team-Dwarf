@@ -50,7 +50,7 @@
                     this.quests.Add(questToAdd);
                 }
             }
-        } 
+        }
 
         public ICollection<Hint> Hints
         {
@@ -75,7 +75,7 @@
                 {
                     this.hints.Add(hintToAdd);
                 }
-                    value.ForEach(this.hints.Add);
+                value.ForEach(this.hints.Add);
             }
         }
 
@@ -95,9 +95,15 @@
                         var userCredentials = await SQLiteData.GetUserCredentials();
 
                         var token = userCredentials.Token ?? "";
-                        
+
                         var response = await httpClient.PostData(quest, "api/Quests", token);
                         hintsToAdd.Clear();
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // TODO: Add messageBox
+                            ((Window.Current.Content as AppShell).AppFrame as Frame).Navigate(typeof(MainPage));
+                        }
                     });
                 }
                 return this.removeQuestCommand;
@@ -116,7 +122,7 @@
                         hintsToAdd.Add(hint);
                         ((Window.Current.Content as AppShell).AppFrame as Frame).GoBack();
                     });
-                    
+
                 }
                 return this.addHintCommand;
             }
