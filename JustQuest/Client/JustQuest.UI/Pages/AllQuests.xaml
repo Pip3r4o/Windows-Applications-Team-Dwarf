@@ -12,7 +12,8 @@
     <Page.Resources>
         <DataTemplate 
             x:Key="QuestDataTemplate">
-            <Grid Width="400">
+            <Grid Width="400"
+                  Tapped="Grid_Tapped">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="70"/>

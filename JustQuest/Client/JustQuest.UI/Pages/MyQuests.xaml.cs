@@ -51,7 +51,7 @@
 
         }
 
-        private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void Grid_Holding(object sender, HoldingRoutedEventArgs e)
         {
             var id = (((sender as Grid).DataContext) as Quest).Id;
 

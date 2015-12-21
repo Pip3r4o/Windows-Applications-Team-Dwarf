@@ -120,11 +120,11 @@
     <Compile Include="DataModels\UserViewModel.cs" />
     <Compile Include="DataModels\ViewModelBase.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Helpers\BadRequestHandler.cs" />
-    <Compile Include="Helpers\DelegateCommand.cs" />
-    <Compile Include="Helpers\DialogResult.cs" />
-    <Compile Include="Helpers\HttpRequester.cs" />
-    <Compile Include="Helpers\MessageBox.cs" />
+    <Compile Include="Pages\Helpers\BadRequestHandler.cs" />
+    <Compile Include="Pages\Helpers\DelegateCommand.cs" />
+    <Compile Include="Pages\Helpers\DialogResult.cs" />
+    <Compile Include="Pages\Helpers\HttpRequester.cs" />
+    <Compile Include="Pages\Helpers\MessageBox.cs" />
     <Compile Include="Controls\NavMenuItem.cs" />
     <Compile Include="Pages\AddHint.xaml.cs">
       <DependentUpon>AddHint.xaml</DependentUpon>
@@ -134,6 +134,9 @@
     </Compile>
     <Compile Include="Pages\AllQuests.xaml.cs">
       <DependentUpon>AllQuests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CurrentQuestPage.xaml.cs">
+      <DependentUpon>CurrentQuestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Instructions.xaml.cs">
       <DependentUpon>Instructions.xaml</DependentUpon>
@@ -240,6 +243,10 @@
     <Page Include="Pages\AllQuests.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\CurrentQuestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Instructions.xaml">
       <SubType>Designer</SubType>

@@ -76,5 +76,13 @@
             scrollViewer.ChangeView(null, 0, null, true);
             VisualStateManager.GoToState(this, "PullToRefresh", false);
         }
+
+        private void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var quest = ((sender as Grid).DataContext);
+
+            this.Frame.Navigate(typeof(CurrentQuestPage), quest);
+
+        }
     }
 }

@@ -95,9 +95,7 @@
                         var userCredentials = await SQLiteData.GetUserCredentials();
 
                         var token = userCredentials.Token ?? "";
-
-                        // TODO:
-                        object questFormDetails = JsonConvert.SerializeObject(quest);
+                        
                         var response = await httpClient.PostData(quest, "api/Quests", token);
                         hintsToAdd.Clear();
                     });

@@ -83,6 +83,24 @@
             }
         }
 
+        public async Task<HttpResponseMessage> PutData(object data, string url, string token)
+        {
+            this.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var json = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data));
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await this.client.PutAsync(baseUrl + url, content);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+        }
+
         public async Task<HttpResponseMessage> GetDataAuthorize(string url, string token)
         {
             this.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
