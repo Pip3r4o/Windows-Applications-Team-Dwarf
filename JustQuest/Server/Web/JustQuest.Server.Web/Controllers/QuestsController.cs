@@ -36,6 +36,18 @@
             return this.Ok(result);
         }
 
+        [HttpGet]
+        [Route("~/api/quests/count")]
+        [AllowAnonymous]
+        public IHttpActionResult GetQuestsCount()
+        {
+            var result = this.data.Quests
+                .All()
+                .Count(x => x.NumberOfRemainingCorrectGuesses > 0);
+
+            return this.Ok(result);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var result = this.data.Quests.All()
@@ -117,9 +129,9 @@
                 this.data.SaveChanges();
                 return this.Ok(0);
             }
-            
+
         }
-        
+
         public IHttpActionResult Post(QuestRequestModel quest)
         {
             var currentUserId = User.Identity.GetUserId();

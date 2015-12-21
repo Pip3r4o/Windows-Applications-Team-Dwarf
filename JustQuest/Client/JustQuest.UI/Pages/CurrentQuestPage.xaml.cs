@@ -84,6 +84,11 @@ namespace JustQuest.UI.Pages
 
             if (response.IsSuccessStatusCode)
             {
+                var responsePoints = await response.Content.ReadAsStringAsync();
+
+                var dialog = new MessageDialog(responsePoints, "Your answer was placed successfully!");
+                await dialog.ShowAsync();
+
                 this.Frame.Navigate(typeof(AllQuests));
             }
         }

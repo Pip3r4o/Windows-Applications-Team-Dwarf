@@ -13,7 +13,7 @@
     </Page.Resources>
 
     <Grid Style="{StaticResource PageStyle}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -34,7 +34,18 @@
                 <Image Source="../Assets/MainLogo.png"/>
             </Grid>
             <Grid x:Name="MainGrid" Grid.Row="1">
-                <TextBlock Text="Active Quests"></TextBlock>
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="Indigo"
+                           FontWeight="ExtraBlack"
+                           FontSize="40"
+                    Text="Active Quests" Margin="50,44,40,-45"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="2">
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="Indigo"
+                           FontWeight="ExtraBlack"
+                           FontSize="40"
+                    Text="{Binding ActiveQuests}" Margin="50,44,40,-45"></TextBlock>
             </Grid>
         </Grid>
     </Grid>

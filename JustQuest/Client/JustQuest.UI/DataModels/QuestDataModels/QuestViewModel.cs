@@ -85,7 +85,6 @@
             {
                 if (this.removeQuestCommand == null)
                 {
-
                     this.removeQuestCommand = new DelegateCommand<Quest>(async (quest) =>
                     {
                         foreach (var hint in hintsToAdd)

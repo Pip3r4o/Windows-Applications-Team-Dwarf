@@ -13,7 +13,7 @@
         <DataTemplate 
             x:Key="QuestDataTemplate">
             <Grid 
-                Width="280"
+                Width="400"
                   Holding="Grid_OnHolding">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
