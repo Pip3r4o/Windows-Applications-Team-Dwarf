@@ -87,14 +87,6 @@ namespace JustQuest.UI
                         DestPage = typeof(Leaderboards)
                     });
 
-            navlist.Add(
-                new NavMenuItem
-                {
-                    Symbol = Symbol.ContactInfo,
-                    Label = "Instructions",
-                    DestPage = typeof(Instructions)
-                });
-
             if (creds)
             {
                 navlist.Add(

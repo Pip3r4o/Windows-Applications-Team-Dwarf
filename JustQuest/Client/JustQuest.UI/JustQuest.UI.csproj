@@ -108,6 +108,8 @@
     <Compile Include="DataModels\LeaderboardDataModels\Leaderboard.cs" />
     <Compile Include="DataModels\LeaderboardDataModels\LeaderboardPageViewModel.cs" />
     <Compile Include="DataModels\LeaderboardDataModels\LeaderboardViewModel.cs" />
+    <Compile Include="DataModels\PointOfInterest.cs" />
+    <Compile Include="DataModels\PointOfInterestsManager.cs" />
     <Compile Include="DataModels\QuestDataModels\AddQuestViewModel.cs" />
     <Compile Include="DataModels\HintDataModels\Hint.cs" />
     <Compile Include="DataModels\IContentViewModel.cs" />
@@ -137,9 +139,6 @@
     </Compile>
     <Compile Include="Pages\CurrentQuestPage.xaml.cs">
       <DependentUpon>CurrentQuestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Instructions.xaml.cs">
-      <DependentUpon>Instructions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Leaderboards.xaml.cs">
       <DependentUpon>Leaderboards.xaml</DependentUpon>
@@ -200,6 +199,7 @@
     <Content Include="Assets\ListBackground.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\MainLogo.png" />
+    <Content Include="Assets\mappin.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\SmallLiveTile1.jpg" />
     <Content Include="Assets\SmallLiveTile2.jpg" />
@@ -245,10 +245,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\CurrentQuestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Instructions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
